@@ -1,0 +1,197 @@
+<html>
+	<head>
+    <title>Everything as Code</title>
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<div style="text-transform: none; font-size: 0.7em;">
+	          <h1>Everything as Code</h1>
+	          <h3>Phil Fenstermacher</h3>
+					</div>
+					<img src="images/wmlogo.png" style="border: 0; box-shadow: none;"/>
+          <aside class="notes">
+            Introduction<br />
+            Nothing is OS specific<br />
+						Skipping traditional code<br />
+          </aside>
+        </section>
+				<section>
+          <h2>What?</h2>
+          <p>Systems and software managed by versionable code that is understood by humans and machines.</p>
+				</section>
+				<section>
+					<img src="images/adduser.png" />
+					<aside class="notes">
+						- Fancy GUIs are fancy
+					</aside>
+				</section>
+				<section>
+          <pre><code>
+user { 'phil':
+  ensure => present,
+  groups => [
+    'sudo',
+    'administrators',
+  ],
+}
+        	</code></pre>
+          <aside class="notes">
+						git push easier than RDP/VPN
+          </aside>
+        </section>
+        <section>
+          <h2>Why?</h2>
+          <ul>
+            <li>You can DevOps!</li>
+            <li class="fragment" data-fragment-index="1">Automation</li>
+            <li class="fragment" data-fragment-index="1">Version everything</li>
+            <li class="fragment" data-fragment-index="1">Shared information</li>
+          </ul>
+					<aside class="notes">
+						- SRE model more than merged Dev/Ops teams<br />
+						- Source control for everything.
+					</aside>
+        </section>
+        <section>
+          <h2>Automate Everything</h2>
+          <ul>
+            <li>Test Style/Stability/Policy</li>
+            <li>Deploy changes</li>
+						<li>Enforcement</li>
+          </ul>
+          <p class="fragment">Change Requests become a patch</p>
+          <aside class="notes">
+						Tests important for automation<br />
+						<br />
+						End to end from SCM<br />
+						Code becomes authoritative<br />
+						<hr />
+						Every change is a code change - simplifies change management<br />
+						Change control when effect is realized
+          </aside>
+        </section>
+        <section>
+          <h2>Every. Single. Change.</h2>
+          <ul>
+            <li>Trivial rollback</li>
+            <li>Smaller, less risky changes</li>
+            <li>Repeatable</li>
+						<li>Leads to overwhelming audit data</li>
+          </ul>
+          <aside class="notes">
+            - Super cheap to push a change<br />
+						- Small changes can mean less red tape<br />
+						- More weird servers<br />
+            - Auditors need to help and learn<br />
+          </aside>
+        </section>
+        <section>
+          <h2>Share Everything</h2>
+          <ul>
+            <li>Everyone can see what's going on</li>
+						<li>Removes information bottlenecks</li>
+						<li>Informs security teams</li>
+						<li>Improve end user support</li>
+          </ul>
+          <aside class="notes">
+            - Documentation in code<br />
+						- Requires everyone understand the tool/code first<br />
+						- Other teams can make some changes (crontabs)<br />
+						- Too much noise too be useful?<br />
+						<strong>- Weird order coming.</strong>
+          </aside>
+        </section>
+				<section>
+					<h2>Jumping Ahead</h2>
+					<p>Infrastructure as Code</p>
+				</section>
+        <section>
+          <h2>The Usual Applications</h2>
+          <ul>
+            <li>Container Builds</li>
+            <li>Configuration Management</li>
+          </ul>
+          <aside class="notes">
+            - Docker is its own thing. Come to the next talk. We're using
+              it for Banner.<br />
+						- Testing important <strong>User/Firewall</strong><br />
+          </aside>
+        </section>
+        <section>
+          <h2>Other Applications</h2>
+          <ul>
+						<li>VM Templates (using Packer)</li>
+            <li>Authoritative DNS</li>
+            <li>CAS Applications</li>
+						<li class="fragment" data-fragment-index="1">Database Schema*</li>
+            <li class="fragment" data-fragment-index="1">Docker Services</li>
+          </ul>
+          <aside class="notes">
+						- Distinguish state vs. transactional<br />
+						- Packer (reuse for other platforms)<br />
+            - Demo CAS/DNS<br />
+						- Liquibase<br />
+          </aside>
+        </section>
+				<section>
+					<h2>Getting There</h2>
+					<ul>
+						<li>Tooling/Proof of Concept</li>
+						<li>Don't insist on a single tool</li>
+						<li>Security</li>
+						<li>Culture</li>
+					</ul>
+					<aside class="notes">
+						- Tooling requirements (Wedding Website)<br />
+						- Use the right tool (don't obsess over centralizaton)<br />
+						- Vendors haven't caught up<br />
+						- Security challenge - distributed repository is hard to protect<br />
+						- Culture, not todo list (Chris wanting to move DNS)</br />
+						- This presentation is all in code<br />
+						- Check terraform<br />
+					</aside>
+				</section>
+        <section>
+          <h2>Looking Forward</h2>
+					<ul>
+						<li>More infrastructure</li>
+						<li>Storage</li>
+						<li>Permissions</li>
+						<li class="fragment">Collboration</li>
+					</ul>
+					<aside class="notes">
+						- Storage volume settings<br />
+						- Storage permissions<br />
+						- Increasing users/help desk<br />
+						<hr />
+						- We're all solving the same problems
+          </aside>
+        </section>
+				<section>
+					<h2>Thanks!</h2>
+					<p>pcfens@wm.edu</p>
+				</section>
+			</div>
+		</div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    		<script>
+    			Reveal.initialize({
+            history: true,
+						progress: false,
+						slideNumber: true,
+						transition: 'fade',
+						transitionSpeed: 'fast',
+            dependencies: [
+							{ src: 'plugin/notes/notes.js', async: true },
+		          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            ],
+          });
+    		</script>
+    	</body>
+    </html>

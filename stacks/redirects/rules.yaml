@@ -1,0 +1,6 @@
+---
+- name: Redirect Everything
+  pattern: ^.*/
+  targets:
+  - target: https://github.com/pcfens/vascan2017
+    code: 302

@@ -1,0 +1,11 @@
+forge 'https://forgeapi.puppetlabs.com'
+
+mod 'puppetlabs/apt', '4.1.0'
+mod 'puppetlabs/stdlib', '4.20.0'
+mod 'puppet/unattended_upgrades', '3.0.0'
+
+mod 'guest_additions',
+  :git => 'git://github.com/pcfens/puppet-guest_additions'
+
+# sudo
+mod 'saz/sudo', '4.2.0'

@@ -1,0 +1,11 @@
+---
+:backends:
+  - yaml
+:hierarchy:
+  - node/%{::clientcert}
+  - cluster/%{::cluster_name}
+  - "%{::osfamily}"
+  - common
+  - test
+:yaml:
+  :datadir: '/vagrant/puppet/hieradata'

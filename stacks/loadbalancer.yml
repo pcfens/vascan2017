@@ -1,0 +1,43 @@
+version: "3.3"
+
+networks:
+  loadbalancer:
+    external: true
+
+services:
+  traefik:
+    image: traefik:1.4.0-rc3-alpine
+    command: --web --docker --docker.swarmmode --docker.watch --logLevel=WARN
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: ingress
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: ingress
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: ingress
+    networks:
+      - loadbalancer
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: false
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
+      update_config:
+        parallelism: 1
+        delay: 15s

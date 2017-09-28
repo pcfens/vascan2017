@@ -1,0 +1,23 @@
+version: "3.3"
+
+networks:
+  loadbalancer:
+    external: true
+
+services:
+  redirector:
+    image: pcfens/redirector
+    environment:
+      REDIRECT_SOURCE: https://raw.githubusercontent.com/pcfens/vascan2017/master/stacks/redirects/rules.yaml
+    networks:
+      - loadbalancer
+    deploy:
+      replicas: 2
+      labels:
+        traefik.backend: redirects
+        traefik.frontend.rule: "Host:vascan-demo.it.example.edu;Path:/"
+        traefik.port: 8080
+        traefik.docker.network: loadbalancer
+      update_config:
+        parallelism: 1
+        delay: 15s

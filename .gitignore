@@ -1,0 +1,10 @@
+packer/puppet/modules
+packer/packer_cache
+packer/*.box
+packer/*.gz
+
+terraform/.terraform
+terraform/*.tfstate
+terraform/*.tfstate.backup
+
+setup.sh

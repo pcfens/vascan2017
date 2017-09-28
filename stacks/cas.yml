@@ -1,0 +1,23 @@
+version: "3.3"
+
+networks:
+  loadbalancer:
+    external: true
+
+services:
+  tester:
+    image: pcfens/test-cas
+    environment:
+      CAS_SERVER: cas.example.edu
+    networks:
+      - loadbalancer
+    deploy:
+      replicas: 2
+      labels:
+        traefik.backend: cas_tester
+        traefik.frontend.rule: "Host:vascan-demo.it.example.edu;PathPrefixStrip:/cas"
+        traefik.port: 80
+        traefik.docker.network: loadbalancer
+      update_config:
+        parallelism: 1
+        delay: 15s

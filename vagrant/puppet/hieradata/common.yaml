@@ -1,0 +1,16 @@
+---
+filebeat::outputs:
+  logstash:
+    index: filebeat
+    hosts:
+      - phxlv-log01.vm.slan.devita.co:5044
+
+filebeat::prospectors:
+  syslogs:
+    doc_type: syslog
+    paths:
+      - "/var/log/syslog"
+  authlogs:
+    doc_type: authlog
+    paths:
+      - "/var/log/auth.log"
